@@ -1,0 +1,16 @@
+# DevTinder REact + Vite
+
+## created React +vite App
+
+## installed tailwind css
+
+## installing daisyui
+
+# React Router Dom
+
+-we need to setup router in the root level of the app - 
+
+<BrowserRouter basename="/"> 
+    <Routes> 
+    <Route path="/login" element ={<login/>}> 
+    </Routes>

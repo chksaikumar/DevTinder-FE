@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">DevTinder</a>
+        <Link className="btn btn-ghost text-xl">DevTinder</Link>
       </div>
       <div className="flex gap-2">
         <div className="dropdown dropdown-end px-2">
