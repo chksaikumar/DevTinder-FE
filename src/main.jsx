@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/Login.jsx";
 import Profile from "./components/Profile.jsx";
 import Error from "./components/Error.jsx";
+import { Provider } from "react-redux";
+import Appstore from "./redux/store.js";
+import Feed from "./components/feed.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +16,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <Error />,
     children: [
-      // { path: "/", element: <App /> },
+      { path: "/", element: <Feed /> },
       { path: "/login", element: <Login /> },
       { path: "/profile", element: <Profile /> },
     ],
@@ -22,6 +25,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={Appstore}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

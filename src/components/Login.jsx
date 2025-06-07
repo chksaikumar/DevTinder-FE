@@ -1,25 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const Login = () => {
-  const [email, setemail] = useState("Kumar@gmail.com");
-  const [password, setpassword] = useState("Kumar$123");
-
+  const [email, setemail] = useState("sana.iqbal@example.com");
+  const [password, setpassword] = useState("DevQueen@2024");
+  const [Error, setError] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const LoginHandler = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:7777/login",
+        `${apiUrl}/login`,
         {
           emailId: email,
           password: password,
         },
         { withCredentials: true }
       );
-      console.log("✅ Login Success:", response.data);
+      dispatch(addUser(response.data));
+      navigate("/");
       // You can redirect or store token here
     } catch (error) {
-      console.error("❌ Login Error:", error.response?.data || error.message);
+      console.error(error.response?.data?.err);
+      setError(error.response?.data?.err || "Something went Error ");
     }
   };
   return (
@@ -41,7 +49,7 @@ const Login = () => {
               />
             </div>
 
-            <div className="form-control mb-4">
+            <div className="form-control mb-2">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
@@ -54,7 +62,9 @@ const Login = () => {
               />
             </div>
 
-            <div className="form-control">
+            <p className="text-red-500">{Error}</p>
+
+            <div className="form-control flex items-center justify-center mt-5">
               <button type="submit" className="btn btn-primary">
                 Login
               </button>
