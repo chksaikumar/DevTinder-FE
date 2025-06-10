@@ -7,7 +7,8 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const Navbar = () => {
   const userData = useSelector((store) => store.user);
   // console.log(userData);
-  const photourl = userData?.data?.photourl;
+  const photourl = userData?.photourl;
+
   // const firstName = userData?.data.firstName;
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -60,7 +61,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to={"/friends"}>Friends</Link>
+              </li>
+              <li>
+                <Link to={"/requests"}>Requests</Link>
               </li>
               <li>
                 <p onClick={handleLogOut}>Logout</p>

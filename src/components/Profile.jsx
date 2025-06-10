@@ -5,24 +5,22 @@ import axios from "axios";
 import { addUser } from "../redux/userSlice";
 const BASE_URL = import.meta.env.VITE_API_URL;
 
-const ProfileEdit = ({ initialData, onSave }) => {
+const ProfileEdit = () => {
   const [loading, setloading] = useState(false);
   const [profileTost, setprofiletost] = useState(false);
   const dispatch = useDispatch();
   const userdata = useSelector((store) => store?.user);
   if (!userdata) return <p>Loading....</p>;
   let { firstName, lastName, age, gender, bio, skills, photourl } = userdata;
-  const [formData, setFormData] = useState(
-    initialData || {
-      firstName: firstName,
-      lastName: lastName,
-      age: age,
-      gender: gender,
-      bio: bio,
-      skills: skills || [],
-      photourl: photourl,
-    }
-  );
+  const [formData, setFormData] = useState({
+    firstName: firstName,
+    lastName: lastName,
+    age: age,
+    gender: gender,
+    bio: bio,
+    skills: skills || [],
+    photourl: photourl,
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
